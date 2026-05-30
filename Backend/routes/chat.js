@@ -65,15 +65,15 @@ router.delete("/thread/:threadId", async (req,res) => {
     }
 });
 
-router.post("/chat", async(res, req) => {
+router.post("/chat", async(req, res) => {
     const {threadId, message} = req.body;
 
-    if(!threads || !messages) {
+    if(!threadId || !message) {
         res.status(400).json({error: "missing required fields"});
     }
 
     try {
-        const thread = await Thread.findOne({threadId});
+        let thread = await Thread.findOne({threadId});
 
         if(!thread) {
             //create a new thread in db

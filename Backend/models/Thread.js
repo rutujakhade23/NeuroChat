@@ -7,7 +7,7 @@ const MessageSchema = new mongoose.Schema({
         enum: ["user", "assistant"],
         required: true
     },
-    Content:{
+    content:{
         type: String,
         required: true
     },
