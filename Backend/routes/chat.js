@@ -65,6 +65,33 @@ router.delete("/thread/:threadId", async (req,res) => {
     }
 });
 
+router.put("/thread/:threadId", async (req, res) => {
+    const { threadId } = req.params;
+    const { title } = req.body;
+
+    try {
+        const updatedThread = await Thread.findOneAndUpdate(
+            { threadId },
+            { title },
+            { new: true }
+        );
+
+        if (!updatedThread) {
+            return res.status(404).json({
+                error: "Thread not found"
+            });
+        }
+
+        res.json(updatedThread);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            error: "Failed to rename thread"
+        });
+    }
+});
+
 router.post("/chat", async(req, res) => {
     const {threadId, message} = req.body;
 
