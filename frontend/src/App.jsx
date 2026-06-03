@@ -4,6 +4,9 @@ import ChatWindow from "./ChatWindow.jsx";
 import { MyContext } from "./MyContext.jsx";
 import { useState } from "react";
 import { v1 as uuidv1 } from "uuid";
+import { Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   const [prompt, setPrompt] = useState("");
@@ -23,13 +26,32 @@ function App() {
   };  
 
   return (
-    <div className="app" >
-      <MyContext.Provider value={providerValues}>
-          <Sidebar></Sidebar>
-          <ChatWindow></ChatWindow>
-        </MyContext.Provider>
-    </div>
-  )
+  <Routes>
+
+    <Route
+      path="/login"
+      element={<Login />}
+    />
+
+    <Route
+      path="/register"
+      element={<Register />}
+    />
+
+    <Route
+      path="/"
+      element={
+        <div className="app">
+          <MyContext.Provider value={providerValues}>
+            <Sidebar />
+            <ChatWindow />
+          </MyContext.Provider>
+        </div>
+      }
+    />
+
+  </Routes>
+);
 }
 
 export default App

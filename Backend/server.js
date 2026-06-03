@@ -4,8 +4,13 @@ import "dotenv/config";
 import mongoose, { connect } from "mongoose";
 import chatRoutes from "./routes/chat.js";
 import dns from "dns";
+import authRoutes from "./routes/auth.js";
+
+console.log(authRoutes);
 
 dns.setDefaultResultOrder("ipv4first");
+
+const router = express.Router();
 
 const app = express();
 const PORT = 8000;
@@ -14,11 +19,17 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api", chatRoutes);
+app.use("/api/auth", authRoutes);
+
+app.get("/hello", (req, res) => {
+    res.send("HELLO");
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
   connectDB();
 });
+
 
 const connectDB = async() => {
   try {

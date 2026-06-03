@@ -1,11 +1,13 @@
 import express from "express";
 import Thread from "../models/Thread.js";
 import getGroqAPIResponse from "../utils/groq.js";
+import searchWeb from "../utils/webSearch.js";
+import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
 //test 
-router.post("/test", async(req, res) => {
+router.post("/test", auth, async(req, res) => {
     try{
         const thread = new Thread({
             threadId: "xyz",
@@ -113,7 +115,38 @@ router.post("/chat", async(req, res) => {
             thread.messages.push({role: "user", content: message});
         }
 
-        const assistantReply = await getGroqAPIResponse(message);
+        // const assistantReply = await getGroqAPIResponse(message);
+
+            let finalPrompt = message;
+
+            const searchKeywords = [
+              "who is",
+              "what is",
+              "latest",
+              "today",
+              "news",
+              "current",
+              "recent"
+            ];
+
+        const shouldSearch = searchKeywords.some(keyword =>
+        message.toLowerCase().includes(keyword)
+        );
+
+        if (shouldSearch) {
+         const webResult = await searchWeb(message);
+
+        finalPrompt = `
+            User Question: ${message}
+
+         Web Information:
+        ${webResult}
+
+        Answer using the above information.
+        `;
+    }
+
+    const assistantReply = await getGroqAPIResponse(finalPrompt);
 
         thread.messages.push({role: "assistant", content: assistantReply});
         thread.updatedAt = new Date();
