@@ -4,18 +4,19 @@
     padding: 8rem;
 }
 
-.userDiv{
+.userDiv {
     display: flex;
     justify-content: flex-end;
     font-size: 0.9rem;
 }
 
-.gptDiv{
+
+.gptDiv {
     text-align: left;
     font-size: 0.9rem;
 }
 
-.userMessage{
+.userMessage {
     background-color: #323232;
     padding: 10px 20px;
     border-radius: 14px;
@@ -28,6 +29,6 @@
     border-radius: 14px !important;
 }
 
-pre{
+pre {
     white-space: pre-wrap;
 }

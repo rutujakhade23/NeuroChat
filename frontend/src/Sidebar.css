@@ -4,8 +4,9 @@
     height: 100vh;
     width: 320px;
     display: flex;
+    overflow-y: auto;
     flex-direction: column;
-    justify-content: space-between;
+   
 }
 
 button{
@@ -34,10 +35,14 @@ button span {
 button:hover {
     background-color: rgba(180, 180, 180, 0.05);
 }
-.history{
+/* .history{
     margin: 10px;
     padding: 10px;
     height: 100%;
+} */
+.history {
+    flex: 1;
+    overflow-y: auto;
 }
 
 .history li {
@@ -55,12 +60,19 @@ button:hover {
     border-radius: 10px;
 }
 
-.sign{
+/* .sign{
     padding: 10px;
     margin: 10px;
     font-size: 14px;
     text-align: center;
     border-top: solid 0.25px rgba(255, 255, 255, 0.5);
+} */
+ .sign {
+    position: sticky;
+    bottom: 0;
+    background: #171717;
+    padding: 10px;
+    border-top: 1px solid rgba(255,255,255,0.2);
 }
 .fa-trash,
 .fa-pen{

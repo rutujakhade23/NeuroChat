@@ -1,21 +1,44 @@
 import "./Register.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
-    const handleRegister = async (e) => {
-        e.preventDefault();
+   const handleRegister = async (e) => {
+    e.preventDefault();
 
-        console.log({
-            name,
-            email,
-            password
+    try {
+        const response = await fetch("http://localhost:8000/api/auth/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                password
+            })
         });
-    };
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Registered successfully!");
+            navigate("/login");   // 👉 go to login page
+        } else {
+            alert(data.message || "Registration failed");
+        }
+
+    } catch (err) {
+        console.log(err);
+        alert("Server error");
+    }
+};
 
     return (
         <div className="register-container">

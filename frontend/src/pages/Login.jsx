@@ -1,9 +1,11 @@
 import { useState } from "react";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -27,6 +29,7 @@ function Login() {
         localStorage.setItem("token", data.token);
 
         console.log("Login successful");
+        navigate("/chat");
     };
 
 return (
