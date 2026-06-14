@@ -19,3 +19,122 @@ body {
   height: 100vh;
   overflow: hidden;
 }
+
+.dark {
+    background: #212121;
+    color: white;
+}
+
+.light {
+    background: white;
+    color: black;
+}
+
+.app.dark {
+  background-color: #212121;
+  color: white;
+}
+
+.app.light {
+  background-color: white;
+  color: black;
+}
+
+.app.light .sidebar {
+  background-color: #f5f5f5;
+  color: black;
+}
+
+.app.light .chatWindow {
+  background-color: white;
+  color: black;
+}
+
+.app.light input {
+  background-color: #eeeeee;
+  color: black;
+}
+
+.app.light .userMessage {
+  background-color: #dcdcdc;
+  color: black;
+}
+
+/* LIGHT THEME */
+.app.light {
+  background-color: #ffffff;
+  color: #111111;
+}
+
+.app.light .sidebar {
+  background-color: #f5f5f5;
+  color: #111111;
+}
+
+.app.light .chatWindow {
+  background-color: #ffffff;
+  color: #111111;
+}
+
+.app.light .dropDown {
+  background-color: #ffffff;
+  color: #111111;
+  border: 1px solid #ddd;
+}
+
+.app.light .dropDownItem {
+  color: #111111;
+}
+
+.app.light .sign {
+  color: #111111;
+  border-top: 1px solid #ccc;
+}
+
+.app.light button {
+  color: #111111;
+  border: 1px solid #ccc;
+}
+
+.app.light input {
+  background-color: #f0f0f0;
+  color: #111111;
+}
+
+.app.light .info {
+  color: #555;
+}
+
+.app.dark {
+  background-color: #212121;
+  color: white;
+}
+
+.app.light .sidebar {
+    background-color: white;
+    color: black;
+}
+
+.app.light .sign {
+    background-color: white;
+    color: black;
+}
+
+.app.light .dropDown {
+    background-color: white;
+    color: black;
+}
+
+.app.light .dropDownItem {
+    color: black;
+}
+
+.app.dark .sidebar {
+    background-color: #171717;
+    color: #b4b4b4;
+}
+
+.app.dark .sign {
+    background-color: #171717;
+    color: #b4b4b4;
+}

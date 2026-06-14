@@ -96,7 +96,8 @@ input:focus {
     position: absolute;
     top: 4rem;
     right: 4rem;
-    background-color: #323232;
+    background-color: inherit;
+    color: inherit;
     padding: 0.3rem 0.5rem;
     border-radius: 6px;
     text-align: left;

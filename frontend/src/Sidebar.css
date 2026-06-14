@@ -67,12 +67,13 @@ button:hover {
     text-align: center;
     border-top: solid 0.25px rgba(255, 255, 255, 0.5);
 } */
- .sign {
+.sign {
     position: sticky;
     bottom: 0;
-    background: #171717;
     padding: 10px;
     border-top: 1px solid rgba(255,255,255,0.2);
+    color: inherit;
+    background-color: inherit;
 }
 .fa-trash,
 .fa-pen{

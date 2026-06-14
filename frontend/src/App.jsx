@@ -16,6 +16,7 @@ function App() {
   const [prevChats, setPrevChats] = useState([]);
   const [newChat, setNewChat] = useState(true);
   const [allThreads, setAllThreads] = useState([]);
+  const [theme, setTheme] = useState("dark");
 
   const providerValues = {
     prompt,
@@ -30,24 +31,33 @@ function App() {
     setPrevChats,
     allThreads,
     setAllThreads,
+    theme,
+    setTheme,
   };
 
   return (
     <Routes>
-      {/* default route */}
-      <Route path="/" element={<Navigate to="/register" />} />
+      <Route
+        path="/"
+        element={<Navigate to="/register" />}
+      />
 
-      {/* auth pages */}
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
+      <Route
+        path="/register"
+        element={<Register />}
+      />
 
-      {/* protected chat */}
+      <Route
+        path="/login"
+        element={<Login />}
+      />
+
       <Route
         path="/chat"
         element={
           <ProtectedRoute>
             <MyContext.Provider value={providerValues}>
-              <div className="app">
+              <div className={`app ${theme}`}>
                 <Sidebar />
                 <ChatWindow />
               </div>

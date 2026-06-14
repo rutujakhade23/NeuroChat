@@ -28,7 +28,7 @@ function Login() {
 
         localStorage.setItem("token", data.token);
 
-        console.log("Login successful");
+        localStorage.setItem("token", data.token);
         navigate("/chat");
     };
 
