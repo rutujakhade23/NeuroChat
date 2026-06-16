@@ -23,15 +23,25 @@ router.post("/test", auth, async(req, res) => {
 });
 
 //Get all threads 
-router.get("/thread", async(req, res) => {
+router.get("/thread/user/:userId", async(req, res) => {
     try {
-        const threads = await Thread.find({}).sort({ updatedAt: -1 });
+
+        const { userId } = req.params;
+
+        const threads = await Thread.find({
+            userId: userId
+        }).sort({ updatedAt: -1 });
+
         res.json(threads);
+
     } catch(err) {
         console.log(err);
-        res.status(500).json({error: "Failed to fetch threads"});
+
+        res.status(500).json({
+            error: "Failed to fetch threads"
+        });
     }
-})
+});
 
 router.get("/thread/:threadId", async(req, res) => {
     const {threadId} = req.params;
@@ -95,7 +105,7 @@ router.put("/thread/:threadId", async (req, res) => {
 });
 
 router.post("/chat", async(req, res) => {
-    const {threadId, message} = req.body;
+    const {threadId, message, userId} = req.body;
 
     if(!threadId || !message) {
         res.status(400).json({error: "missing required fields"});
@@ -107,10 +117,16 @@ router.post("/chat", async(req, res) => {
         if(!thread) {
             //create a new thread in db
             thread = new Thread({
-                threadId,
-                title: message,
-                messages: [{role: 'user',content: message}]
-            });
+            threadId,
+            userId,
+            title: message,
+            messages: [
+        {
+            role: "user",
+            content: message
+        }
+    ]
+});
         } else{
             thread.messages.push({role: "user", content: message});
         }

@@ -36,9 +36,10 @@ function ChatWindow() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        message: prompt,
-        threadId: currThreadId,
-      }),
+      message: prompt,
+      threadId: currThreadId,
+      userId: localStorage.getItem("userId")
+     })
     };
 
     try {

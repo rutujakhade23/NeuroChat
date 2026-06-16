@@ -37,51 +37,55 @@ router.post("/register", async(req,res)=>{
     }
 });
 
-router.post("/login", async(req,res)=>{
+router.post("/login", async (req, res) => {
 
-    const {email,password} = req.body;
+    const { email, password } = req.body;
 
-    try{
+    try {
 
-        const user =
-        await User.findOne({email});
+        const user = await User.findOne({ email });
 
-        if(!user){
+        if (!user) {
             return res.status(404).json({
-                error:"User not found"
+                error: "User not found"
             });
         }
 
-        const isMatch =
-        await bcrypt.compare(
+        const isMatch = await bcrypt.compare(
             password,
             user.password
         );
 
-        if(!isMatch){
+        if (!isMatch) {
             return res.status(400).json({
-                error:"Invalid credentials"
+                error: "Invalid credentials"
             });
         }
 
         const token = jwt.sign(
             {
-                userId:user._id
+                userId: user._id
             },
             process.env.JWT_SECRET,
             {
-                expiresIn:"7d"
+                expiresIn: "7d"
             }
         );
 
-        res.json({token});
+        res.json({
+            token,
+            userId: user._id,
+            name: user.name,
+            email: user.email
+        });
 
-    }catch(err){
+    } catch (err) {
         console.log(err);
         res.status(500).json({
-            error:"Login failed"
+            error: "Login failed"
         });
     }
+
 });
 
 export default router;

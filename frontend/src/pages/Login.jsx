@@ -24,11 +24,23 @@ function Login() {
             }
         );
 
-        const data = await response.json();
+       const data = await response.json();
 
         localStorage.setItem("token", data.token);
+        localStorage.setItem("userId", data.userId);
+        localStorage.setItem("userName", data.name);
+        localStorage.setItem("userEmail", data.email);
 
         localStorage.setItem("token", data.token);
+        localStorage.setItem(
+        "userId",
+        data.userId
+    );
+
+        localStorage.setItem(
+        "userName",
+        data.name
+    );
         navigate("/chat");
     };
 

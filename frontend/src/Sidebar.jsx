@@ -20,24 +20,26 @@ function Sidebar() {
     const [selectedThread, setSelectedThread] = useState(null);
 
     const getAllThreads = async () => {
-        try {
-            const response = await fetch(
-                "http://localhost:8000/api/thread"
-            );
+    try {
+        const userId = localStorage.getItem("userId");
 
-            const res = await response.json();
+        const response = await fetch(
+        `http://localhost:8000/api/thread/user/${userId}`
+        );
 
-            const filteredData = res.map(thread => ({
-                threadId: thread.threadId,
-                title: thread.title
-            }));
+        const res = await response.json();
 
-            setAllThreads(filteredData);
+        const filteredData = res.map(thread => ({
+            threadId: thread.threadId,
+            title: thread.title
+        }));
 
-        } catch (err) {
-            console.log(err);
-        }
-    };
+        setAllThreads(filteredData);
+
+    } catch (err) {
+        console.log(err);
+    }
+};
 
     useEffect(() => {
         getAllThreads();
