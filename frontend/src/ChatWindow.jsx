@@ -21,6 +21,14 @@ function ChatWindow() {
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  const userName =
+  localStorage.getItem("userName");
+
+  const userEmail =
+  localStorage.getItem("userEmail");
+
+  const [showSettings, setShowSettings] = useState(false);
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.href = "/login";
@@ -100,10 +108,24 @@ function ChatWindow() {
 
       {isOpen && (
         <div className="dropDown">
-          <div className="dropDownItem">
-            <i className="fa-solid fa-gear"></i>
-            Settings
-          </div>
+          <div className="profileSection">
+
+    <div className="profileName">
+        👤 {userName}
+    </div>
+
+    <div className="profileEmail">
+        📧 {userEmail}
+    </div>
+
+</div>
+
+<hr />
+          <div className="dropDownItem" 
+           onClick={() => setShowSettings(true)}>
+             <i className="fa-solid fa-gear"></i>
+              Settings
+        </div>
 
           <div className="dropDownItem">
             <i className="fa-solid fa-cloud-arrow-up"></i>
@@ -135,6 +157,40 @@ function ChatWindow() {
           </div>
         </div>
       )}
+
+      {
+  showSettings && (
+    <div className="settingsModal">
+      <div className="settingsBox">
+
+        <h2>Settings</h2>
+
+        <p>Theme: {theme}</p>
+
+        <button
+          onClick={() =>
+            setTheme(
+              theme === "dark"
+                ? "light"
+                : "dark"
+            )
+          }
+        >
+          Change Theme
+        </button>
+
+        <button
+          onClick={() =>
+            setShowSettings(false)
+          }
+        >
+          Close
+        </button>
+
+      </div>
+    </div>
+  )
+}
 
       <Chat />
 
