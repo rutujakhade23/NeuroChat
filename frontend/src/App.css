@@ -138,3 +138,12 @@ body {
     background-color: #171717;
     color: #b4b4b4;
 }
+.app.dark {
+    background-color: #212121;
+    color: white;
+}
+
+.app.light {
+    background-color: white;
+    color: black;
+}

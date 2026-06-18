@@ -119,17 +119,7 @@ input:focus {
     border-radius: 6px;
 }
 
-.settingsModal{
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    z-index:2000;
-}
 
 .settingsBox{
     background:#202123;
@@ -158,4 +148,79 @@ input:focus {
 .dropDown hr{
     border:none;
     border-top:1px solid rgba(255,255,255,0.1);
+}
+.inputActions{
+    position:absolute;
+    right:15px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.micButton{
+    cursor:pointer;
+    font-size:20px;
+}
+
+.micButton:hover{
+    color:#339cff;
+}
+.settingsOverlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.6);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+
+.settingsModal{
+    width: 500px;
+    max-width: 90%;
+
+    padding: 30px;
+    border-radius: 15px;
+
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.settingsModal.dark{
+    background: #202123;
+    color: white;
+}
+
+.settingsModal.light{
+    background: white;
+    color: black;
+}
+
+.settingsRow{
+    margin: 15px 0;
+}
+
+.settingsButtons{
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.settingsButtons button{
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.settingsModal.dark button{
+    background: #343541;
+    color: white;
+}
+
+.settingsModal.light button{
+    background: #f3f4f6;
+    color: black;
 }
