@@ -3,6 +3,7 @@ import Chat from "./Chat.jsx";
 import { MyContext } from "./MyContext.jsx";
 import { useContext, useState, useEffect } from "react";
 import { ScaleLoader } from "react-spinners";
+import { jsPDF } from "jspdf";
 
 function ChatWindow() {
   const {
@@ -121,6 +122,45 @@ function ChatWindow() {
     recognition.start();
 };
 
+    const exportChatToPDF = () => {
+
+    const doc = new jsPDF();
+
+    doc.setFontSize(16);
+    doc.text("NeuroChat Conversation", 20, 20);
+
+    let y = 40;
+
+    prevChats.forEach((chat) => {
+
+        const role =
+            chat.role === "user"
+                ? "You"
+                : "AI";
+
+        const text =
+            `${role}: ${chat.content}`;
+
+        const lines =
+            doc.splitTextToSize(
+                text,
+                170
+            );
+
+        doc.text(lines, 20, y);
+
+        y += lines.length * 8;
+
+        if (y > 270) {
+            doc.addPage();
+            y = 20;
+        }
+
+    });
+
+    doc.save("NeuroChat-Chat.pdf");
+};
+
   return (
     <div className="chatWindow">
       <div className="navbar">
@@ -194,109 +234,49 @@ function ChatWindow() {
         </div>
       )}
 
-     
-    {showSettings && (
-  <div className="settingsOverlay">
+   
 
-    <div className="settingsModal">
-
-      <h2>Settings</h2>
-
-      <div className="settingItem">
-        <strong>Name:</strong> {userName}
-      </div>
-
-      <div className="settingItem">
-        <strong>Email:</strong> {userEmail}
-      </div>
-
-      <div className="settingItem">
-
-  <strong>Theme:</strong>
-
-  <button
-    onClick={() =>
-      setTheme(
-        theme === "dark"
-        ? "light"
-        : "dark"
-      )
-    }
+     {showSettings && (
+  <div
+    className={`settingsModal ${theme}`}
   >
-    Switch to {theme === "dark"
-      ? "Light"
-      : "Dark"}
-  </button>
+    <h2>Settings</h2>
 
-</div>
-      <div className="settingItem">
-          <strong>Total Chats:</strong>
-          {allThreads.length}
-     </div>
+    <div className="settingsRow">
+      <strong>Name:</strong> {userName}
+    </div>
+
+    <div className="settingsRow">
+      <strong>Email:</strong> {userEmail}
+    </div>
+
+    <div className="settingsRow">
+      <strong>Total Chats:</strong>{" "}
+      {allThreads?.length || 0}
+    </div>
+
+    <div className="settingsButtons">
       <button
-        className="closeSettings"
-        onClick={() => setShowSettings(false)}
+        onClick={() =>
+          setTheme(
+            theme === "dark"
+              ? "light"
+              : "dark"
+          )
+        }
+      >
+        Switch to {theme === "dark"
+          ? "Light"
+          : "Dark"}
+      </button>
+
+      <button
+        onClick={() =>
+          setShowSettings(false)
+        }
       >
         Close
       </button>
-
-
-    </div>
-
-  </div>
-)}
-
-      {showSettings && (
-  <div
-    className="settingsOverlay"
-    onClick={() => setShowSettings(false)}
-  >
-    <div
-      className={`settingsModal ${theme}`}
-      onClick={(e) => e.stopPropagation()}
-    >
-      <h2>Settings</h2>
-
-      <div className="settingsRow">
-        <strong>Name:</strong> {userName}
-      </div>
-
-      <div className="settingsRow">
-        <strong>Email:</strong> {userEmail}
-      </div>
-
-      <div className="settingsRow">
-        <strong>Theme:</strong>
-      </div>
-
-      <div className="settingsButtons">
-        <button
-          onClick={() =>
-            setTheme(
-              theme === "dark"
-                ? "light"
-                : "dark"
-            )
-          }
-        >
-          Switch to {theme === "dark"
-            ? "Light"
-            : "Dark"}
-        </button>
-
-        <button
-          onClick={() =>
-            setShowSettings(false)
-          }
-        >
-          Close
-        </button>
-      </div>
-
-      <div className="settingsRow">
-        <strong>Total Chats:</strong>{" "}
-        {allThreads?.length || 0}
-      </div>
     </div>
   </div>
 )}
@@ -307,6 +287,16 @@ function ChatWindow() {
         loading={loading}
       />
 
+      <div className="exportSection">
+
+    <button
+        className="exportBtn"
+        onClick={exportChatToPDF}
+    >
+        📄 Export Chat
+    </button>
+
+    </div>
       <div className="chatInput">
         <div className="inputBox">
   <input

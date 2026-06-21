@@ -18,6 +18,7 @@ function Sidebar() {
     const [showRenameModal, setShowRenameModal] = useState(false);
     const [renameText, setRenameText] = useState("");
     const [selectedThread, setSelectedThread] = useState(null);
+    const [searchTerm, setSearchTerm] = useState("");
 
     const getAllThreads = async () => {
     try {
