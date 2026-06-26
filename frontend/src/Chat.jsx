@@ -4,6 +4,7 @@ import { MyContext } from "./MyContext";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
+import { FaCopy } from "react-icons/fa";
 
 
 function Chat() {
@@ -62,16 +63,29 @@ function Chat() {
                         }
                         key={idx}
                     >
+                        <p className="chatTime">
+                         {chat.time}
+                </p>
                         {chat.role === "user" ? (
                             <p className="userMessage">
                                 {chat.content}
                             </p>
                         ) : (
+                            <div className="messageWrapper">
+
                             <ReactMarkdown
-                                rehypePlugins={[rehypeHighlight]}
-                            >
-                                {chat.content}
-                            </ReactMarkdown>
+                            rehypePlugins={[rehypeHighlight]}>
+                                {chat.content} </ReactMarkdown>
+                            <button className="copyBtn"  onClick={() =>
+                       navigator.clipboard.writeText(
+                        chat.content
+            )
+        }
+        >
+            <FaCopy />
+            </button>
+
+        </div>
                         )}
                     </div>
                 ))}

@@ -32,3 +32,29 @@
 pre {
     white-space: pre-wrap;
 }
+.messageWrapper{
+position:relative;
+}
+
+.copyBtn{
+position:absolute;
+top:10px;
+right:10px;
+
+background:none;
+border:none;
+
+color:white;
+cursor:pointer;
+font-size:16px;
+}
+
+.copyBtn:hover{
+color:#10a37f;
+}
+
+.chatTime{
+font-size:12px;
+opacity:0.6;
+margin-top:5px;
+}

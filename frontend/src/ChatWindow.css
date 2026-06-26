@@ -52,6 +52,7 @@
     align-items: center;
 }
 
+
 input {
     width: 100%;
     border: none;
@@ -231,8 +232,19 @@ input:focus {
 }
 
 .exportBtn{
-    padding:10px 20px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:bold;
+    background-color: white;
+    color: black;
+
+    border: none;
+    border-radius: 10px;
+
+    padding: 12px 20px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+.exportBtn:hover{
+    background-color: #f3f4f6;
 }

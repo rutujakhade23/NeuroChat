@@ -75,10 +75,12 @@ function ChatWindow() {
         {
           role: "user",
           content: prompt,
+          time: new Date().toLocaleTimeString()
         },
         {
           role: "assistant",
           content: reply,
+          time: new Date().toLocaleTimeString()
         },
       ]);
     }
