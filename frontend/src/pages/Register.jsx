@@ -13,26 +13,27 @@ function Register() {
     e.preventDefault();
 
     try {
+
         const response = await fetch(
-  "https://neurochat-4qla.onrender.com/api/auth/register",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name,
-      email,
-      password,
-    }),
-  }
-);
+            "https://neurochat-backend-v2ci.onrender.com/api/auth/register",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    password,
+                }),
+            }
+        );
 
         const data = await response.json();
 
         if (response.ok) {
             alert("Registered successfully!");
-            navigate("/login");   // 👉 go to login page
+            navigate("/login");
         } else {
             alert(data.message || "Registration failed");
         }
@@ -42,6 +43,8 @@ function Register() {
         alert("Server error");
     }
 };
+
+  
 
     return (
         <div className="register-container">

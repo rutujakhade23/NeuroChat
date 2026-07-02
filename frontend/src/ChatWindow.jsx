@@ -53,7 +53,7 @@ function ChatWindow() {
     };
 
     const response = await fetch(
-    "https://neurochat-4qla.onrender.com/api/chat", options
+    "https://neurochat-backend-v2ci.onrender.com/api/chat", options
     );
 
       const res = await response.json();
