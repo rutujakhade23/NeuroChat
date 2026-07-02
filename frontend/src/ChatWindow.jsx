@@ -40,7 +40,7 @@ function ChatWindow() {
     setLoading(true);
     setNewChat(false);
 
-    const options = {
+    try {const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,11 +52,9 @@ function ChatWindow() {
      })
     };
 
-    try {
-      const response = await fetch(
-        "http://localhost:8000/api/chat",
-        options
-      );
+    const response = await fetch(
+    "https://neurochat-4qla.onrender.com/api/chat", options
+    );
 
       const res = await response.json();
 

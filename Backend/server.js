@@ -13,10 +13,18 @@ dns.setDefaultResultOrder("ipv4first");
 const router = express.Router();
 
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://YOUR-VERCEL.vercel.app"
+    ],
+    credentials: true,
+  })
+);
 
 app.use("/api", chatRoutes);
 app.use("/api/auth", authRoutes);

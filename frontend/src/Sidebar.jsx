@@ -25,7 +25,7 @@ function Sidebar() {
         const userId = localStorage.getItem("userId");
 
         const response = await fetch(
-        `http://localhost:8000/api/thread/user/${userId}`
+         `https://neurochat-4qla.onrender.com/api/thread/user/${userId}`
         );
 
         const res = await response.json();
@@ -59,8 +59,8 @@ function Sidebar() {
 
         try {
             const response = await fetch(
-                `http://localhost:8000/api/thread/${newThreadId}`
-            );
+            `https://neurochat-4qla.onrender.com/api/thread/${newThreadId}`
+        );
 
             const res = await response.json();
 
@@ -81,7 +81,7 @@ function Sidebar() {
     const saveRename = async () => {
         try {
             await fetch(
-                `http://localhost:8000/api/thread/${selectedThread}`,
+                        `https://neurochat-4qla.onrender.com/api/thread/${selectedThread}`,
                 {
                     method: "PUT",
                     headers: {
@@ -105,7 +105,7 @@ function Sidebar() {
     const deleteThread = async (threadId) => {
         try {
             const response = await fetch(
-                `http://localhost:8000/api/thread/${threadId}`,
+                 `https://neurochat-4qla.onrender.com/api/thread/${threadId}`,
                 {
                     method: "DELETE"
                 }

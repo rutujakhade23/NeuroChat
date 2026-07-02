@@ -11,7 +11,7 @@ function Login() {
         e.preventDefault();
 
         const response = await fetch(
-            "http://localhost:8000/api/auth/login",
+         "https://neurochat-4qla.onrender.com/api/auth/login",
             {
                 method: "POST",
                 headers: {
