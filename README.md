@@ -1,124 +1,69 @@
-# NeuroChat 🤖
+# 🧠 NeuroChat
 
-NeuroChat is a full-stack AI-powered chatbot application that enables users to interact with an intelligent conversational assistant while maintaining multiple chat threads. The application provides persistent conversation storage, thread management, and seamless AI interactions using the Groq API.
+NeuroChat is a full-stack AI-powered chatbot that provides intelligent conversations with persistent chat history, secure user authentication, and real-time AI responses. It is built using the MERN stack and integrates the Groq API for fast AI inference.
 
----
+## 🚀 Live Demo
 
-## 📌 Overview
-
-NeuroChat was built to simulate the experience of modern AI assistants such as ChatGPT. Users can create multiple conversations, switch between chat threads, rename conversations, delete unwanted chats, and continue previous discussions without losing context.
-
-The application combines a React frontend, Express backend, MongoDB database, and Groq's Large Language Model API to deliver a responsive and scalable AI chat experience.
-
----
+🌐 Frontend: https://neuro-chat-six.vercel.app/register
 
 ## ✨ Features
 
-### 🤖 AI-Powered Conversations
-
-* Integrated Groq API for generating intelligent responses.
-* Real-time AI interaction with low response latency.
-
-### 💬 Multi-Thread Chat Management
-
-* Create unlimited conversation threads.
-* Switch between previous conversations.
-* Continue existing discussions without losing history.
-
-### 📝 Thread Operations
-
-* Rename conversation threads.
-* Delete unwanted threads.
-* Automatically store thread metadata.
-
-### 💾 Persistent Storage
-
-* Store conversations in MongoDB Atlas.
-* Retrieve previous chats even after refreshing the application.
-* Maintain chat history across sessions.
-
-### ⚡ Dynamic User Experience
-
-* Real-time chat updates.
-* Responsive sidebar navigation.
-* Active thread highlighting.
-* Context-based state management using React Context API.
+* 🔐 User Registration & Login using JWT Authentication
+* 💬 AI-powered conversations using Groq API
+* 📝 Persistent chat history stored in MongoDB
+* 📂 Multiple chat threads
+* ✏️ Rename and delete conversations
+* 🌐 Web search support for current information
+* 📱 Responsive modern UI
+* ⚡ Fast backend with Express.js
+* ☁️ Cloud deployment using Vercel and Render
 
 ---
 
-## 🏗️ System Architecture
-
-Frontend (React.js)
-
-↓ REST API Calls
-
-Backend (Node.js + Express.js)
-
-↓ Database Operations
-
-MongoDB Atlas
-
-↓ AI Responses
-
-Groq API
-
----
-
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
 ### Frontend
 
 * React.js
-* Context API
-* CSS3
-* Vite
+* React Router
+* CSS
+* Fetch API
 
 ### Backend
 
 * Node.js
 * Express.js
-
-### Database
-
-* MongoDB Atlas
+* MongoDB
 * Mongoose
-
-### AI Integration
-
+* JWT Authentication
+* bcryptjs
 * Groq API
 
-### Version Control
+### Deployment
 
-* Git
-* GitHub
+* Vercel (Frontend)
+* Render (Backend)
+* MongoDB Atlas
 
 ---
 
 ## 📂 Project Structure
 
 ```
-NeuroChat
+NeuroChat/
 │
-├── Backend
-│   ├── models
-│   │   └── Thread.js
-│   ├── routes
-│   │   └── chat.js
-│   ├── utils
-│   │   └── groq.js
-│   ├── server.js
+├── frontend/
+│   ├── src/
+│   ├── public/
 │   └── package.json
 │
-├── frontend
-│   ├── public
-│   ├── src
-│   │   ├── App.jsx
-│   │   ├── Sidebar.jsx
-│   │   ├── ChatWindow.jsx
-│   │   ├── Chat.jsx
-│   │   └── MyContext.jsx
-│   ├── package.json
-│   └── vite.config.js
+├── backend/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── utils/
+│   ├── server.js
+│   └── package.json
 │
 └── README.md
 ```
@@ -127,7 +72,7 @@ NeuroChat
 
 ## ⚙️ Installation
 
-### Clone Repository
+### Clone the Repository
 
 ```bash
 git clone https://github.com/rutujakhade23/NeuroChat.git
@@ -137,23 +82,26 @@ cd NeuroChat
 ### Backend Setup
 
 ```bash
-cd Backend
+cd backend
 npm install
 ```
 
 Create a `.env` file:
 
 ```env
-MONGO_URI=your_mongodb_connection_string
-GROQ_API_KEY=your_groq_api_key
 PORT=8000
+MONGODB_URI=your_mongodb_uri
+JWT_SECRET=your_secret
+GROQ_API_KEY=your_groq_api_key
 ```
 
-Start Backend:
+Start backend:
 
 ```bash
-npm run dev
+npm start
 ```
+
+---
 
 ### Frontend Setup
 
@@ -165,71 +113,59 @@ npm run dev
 
 ---
 
-## API Endpoints
+## 🔑 Environment Variables
 
-### Get All Threads
+Backend requires:
 
-```http
-GET /api/thread
 ```
-
-### Get Single Thread
-
-```http
-GET /api/thread/:threadId
-```
-
-### Create Chat Response
-
-```http
-POST /api/chat
-```
-
-### Rename Thread
-
-```http
-PUT /api/thread/:threadId
-```
-
-### Delete Thread
-
-```http
-DELETE /api/thread/:threadId
+MONGODB_URI
+JWT_SECRET
+GROQ_API_KEY
+PORT
 ```
 
 ---
 
-## Key Learnings
+## 📸 Screenshots
 
-* Building RESTful APIs using Express.js
-* Managing application-wide state using React Context API
-* Integrating Large Language Model APIs
-* Designing MongoDB schemas using Mongoose
-* Implementing CRUD operations in full-stack applications
-* Handling asynchronous operations and API communication
+Add screenshots of:
 
----
-
-## Future Enhancements
-
-* User Authentication (JWT)
-* Light/Dark Theme Toggle
-* Voice Input Support
-* Markdown Rendering
-* Code Block Syntax Highlighting
-* Deployment on Vercel and Render
-* User-Specific Chat Histories
+* Home Page
+* Login
+* Register
+* Chat Interface
+* Thread History
 
 ---
 
-## Author
+## 📌 Future Improvements
+
+* Voice Chat
+* Image Upload
+* Streaming AI Responses
+* Dark Mode
+* Markdown Support
+* File Sharing
+* Chat Export
+
+---
+
+## 👩‍💻 Author
 
 **Rutuja Khade**
 
 GitHub: https://github.com/rutujakhade23
 
-LinkedIn: https://www.linkedin.com/in/rutuja-khade-86a730316/
+LinkedIn: LinkedIn: https://www.linkedin.com/in/rutuja-khade-86a730316/
 
 ---
 
-⭐ If you found this project useful, consider giving it a star on GitHub.
+## ⭐ Support
+
+If you found this project helpful, consider giving it a ⭐ on GitHub.
+
+
+
+
+---
+
