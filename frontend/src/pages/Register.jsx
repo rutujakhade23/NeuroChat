@@ -30,12 +30,14 @@ function Register() {
         );
 
         const data = await response.json();
+        console.log(response.status);
+        console.log(data);
 
         if (response.ok) {
             alert("Registered successfully!");
             navigate("/login");
         } else {
-            alert(data.message || "Registration failed");
+            alert(data.error || "Registration failed");
         }
 
     } catch (err) {
