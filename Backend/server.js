@@ -20,7 +20,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://neurochat-1.onrender.com",
+      "https://neuro-chat-six.vercel.app"
     ],
     credentials: true,
   })
