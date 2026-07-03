@@ -14,11 +14,25 @@ const PORT = process.env.PORT || 8000;
 app.use(express.json());
 
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://neuro-chat-six.vercel.app",
-    "https://neuro-chat-q8pcnhau5-rutujakhade23s-projects.vercel.app"
-  ],
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      "http://localhost:5173",
+      "https://neuro-chat-six.vercel.app"
+    ];
+
+    // Allow no-origin requests (like curl/postman)
+    if (!origin) return callback(null, true);
+
+    // Allow your fixed domains + any Vercel preview deployment for this project
+    if (
+      allowedOrigins.includes(origin) ||
+      /^https:\/\/neuro-chat-[a-z0-9]+-rutujakhade23s-projects\.vercel\.app$/.test(origin)
+    ) {
+      return callback(null, true);
+    }
+
+    return callback(new Error("Not allowed by CORS"));
+  },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true
 }));
