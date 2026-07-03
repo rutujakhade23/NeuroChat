@@ -20,8 +20,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://neuro-chat-six.vercel.app",
-      "https://neuro-chat-q8pcnhau5-rutujakhade23s-projects.vercel.app"
+      "https://neuro-chat-six.vercel.app"
     ],
     credentials: true,
   })
