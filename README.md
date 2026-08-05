@@ -124,32 +124,6 @@ GROQ_API_KEY
 PORT
 ```
 
----
-
-## 📸 Screenshots
-
-Add screenshots of:
-
-* Home Page
-* Login
-* Register
-* Chat Interface
-* Thread History
-
----
-
-## 📌 Future Improvements
-
-* Voice Chat
-* Image Upload
-* Streaming AI Responses
-* Dark Mode
-* Markdown Support
-* File Sharing
-* Chat Export
-
----
-
 ## 👩‍💻 Author
 
 **Rutuja Khade**
