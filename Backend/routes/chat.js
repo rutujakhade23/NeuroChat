@@ -166,11 +166,22 @@ router.post("/chat", async(req, res) => {
 
     const assistantReply = await getGroqAPIResponse(finalPrompt);
 
-        thread.messages.push({role: "assistant", content: assistantReply});
-        thread.updatedAt = new Date();
+if (!assistantReply) {
+    return res.status(500).json({
+        error: "Groq API did not return a response"
+    });
+}
 
-        await thread.save();
-        res.json({reply: assistantReply});
+thread.messages.push({
+    role: "assistant",
+    content: assistantReply
+});
+
+thread.updatedAt = new Date();
+
+await thread.save();
+
+res.json({ reply: assistantReply });
 
     } catch(err){
         console.log(err);
